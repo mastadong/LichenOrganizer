@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LichenOrganizer.DataAccess
+namespace LichenOrganizer.DataAccess.Data
 {
     public class LichenOrganizerDbContext : DbContext
     {
@@ -25,6 +25,8 @@ namespace LichenOrganizer.DataAccess
 
         //DB Sets
         public DbSet<Friend> Friends { get; set; }
+        public DbSet<Lichen> Lichens { get; set; }
+        public DbSet<UTM> UTMEntries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

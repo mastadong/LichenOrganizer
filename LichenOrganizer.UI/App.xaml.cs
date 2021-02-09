@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using LichenOrganizer.DataAccess.Data;
 using LichenOrganizer.UI.Data;
 using LichenOrganizer.UI.Startup;
 using LichenOrganizer.UI.ViewModels;
@@ -26,6 +27,7 @@ namespace LichenOrganizer.UI
             //Call the MainWindow instance from the DIC.
             var mainWindow = container.Resolve<MainWindow>();
 
+            //LichenOrganizerDbContextExtensions.SeedMockData(container.Resolve<LichenOrganizerDbContext>());
             
             mainWindow.Show();
 

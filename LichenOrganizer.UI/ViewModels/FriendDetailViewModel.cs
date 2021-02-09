@@ -14,12 +14,12 @@ namespace LichenOrganizer.UI.ViewModels
 {
     public class FriendDetailViewModel : ViewModelBase, IFriendDetailViewModel
     {
-        private IFriendDataService _dataService;
+        private ILichenDataService _dataService;
         private IEventAggregator _eventAggregator;
         private FriendWrapper _friend;
 
 
-        public FriendDetailViewModel(IFriendDataService dataService, IEventAggregator eventAggregator)
+        public FriendDetailViewModel(ILichenDataService dataService, IEventAggregator eventAggregator)
         {
             _dataService = dataService;
             _eventAggregator = eventAggregator;
@@ -40,11 +40,11 @@ namespace LichenOrganizer.UI.ViewModels
         }
         
         //GET BY ID
-        public async Task LoadAsync(int friendId)
+        public async Task LoadAsync(int lichenId)
         {
-            var friend = await _dataService.GetByIdAsync(friendId);
+            var lichen = await _dataService.GetByIdAsync(lichenId);
             //Instantiate the wrapper class from the returned data object.
-            Friend = new FriendWrapper(friend);
+            //Lichen = new FriendWrapper(lichen);
 
             Friend.PropertyChanged += (s, e) =>
             {
@@ -58,7 +58,7 @@ namespace LichenOrganizer.UI.ViewModels
 
         private async void OnSaveExecute()
         {
-            await _dataService.SaveAsync(Friend.Model);
+            //await _dataService.SaveAsync(Friend.Model);
             _eventAggregator.GetEvent<AfterFriendSavedEvent>().Publish(
                 new AfterFriendSavedEventArgs
                 {

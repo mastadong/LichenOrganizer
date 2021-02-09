@@ -5,6 +5,7 @@ using LichenOrganizer.DataAccess;
 using LichenOrganizer.UI.Data;
 //using LichenOrganizer.UI.ViewModel;
 using LichenOrganizer.UI.ViewModels;
+using LichenOrganizer.DataAccess.Data;
 
 namespace LichenOrganizer.UI.Startup
 
@@ -29,7 +30,7 @@ namespace LichenOrganizer.UI.Startup
             builder.RegisterType<FriendDetailViewModel>().As<IFriendDetailViewModel>();
 
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
-            builder.RegisterType<FriendDataService>().As<IFriendDataService>();
+            builder.RegisterType<LichenDataService>().As<ILichenDataService>();
 
             //builder.RegisterType<LichenOrganizerDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

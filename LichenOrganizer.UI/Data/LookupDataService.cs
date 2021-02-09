@@ -1,4 +1,5 @@
 ﻿using LichenOrganizer.DataAccess;
+using LichenOrganizer.DataAccess.Data;
 using LichenOrganizer.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,11 +23,11 @@ namespace LichenOrganizer.UI.Data
         {
             using (var context = _contextCreator())
             {
-                return await context.Friends.AsNoTracking()
+                return await context.Lichens.AsNoTracking()
                     .Select(f => new LookupItem
                     {
                         Id = f.Id,
-                        DisplayMember = f.FirstName + " " + f.LastName
+                        DisplayMember = f.Genus + " " + f.Species
                     })
                     .ToListAsync();
             }
