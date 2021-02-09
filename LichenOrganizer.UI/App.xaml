@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:LichenOrganizer.UI"
              Startup="Application_Startup">
     <Application.Resources>
+
+        <BitmapImage x:Key="WolfLichen"
+                     UriSource="Assets\wolf-lichen.jpg"
+                     />
+
+
+
+
         <!--Set the implicit textbox validation style. 'Validation' is an attached property that belongs to the TextBox.  Hence, for the ToolTip Setter, we use the TextBox as the Binding Source.-->
         <Style TargetType="TextBox">
             <Setter Property="Validation.ErrorTemplate">

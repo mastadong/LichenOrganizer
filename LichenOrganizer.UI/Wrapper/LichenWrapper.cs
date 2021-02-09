@@ -49,7 +49,12 @@ namespace LichenOrganizer.UI.Wrapper
             get { return GetValue<DateTime>(); }
             set { SetValue(value); }
         }
-        
+        public string Comment
+        {
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
+        }
+
         //VALIDATION RULES
         //We can set custom validation conditions here in the override method.  We can also extend the validation capabilities to incorporate the data annotations 
         //used in the Model.

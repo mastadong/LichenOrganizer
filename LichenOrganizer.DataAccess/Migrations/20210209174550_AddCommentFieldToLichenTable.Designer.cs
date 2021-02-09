@@ -4,14 +4,16 @@ using LichenOrganizer.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LichenOrganizer.DataAccess.Migrations
 {
     [DbContext(typeof(LichenOrganizerDbContext))]
-    partial class LichenOrganizerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210209174550_AddCommentFieldToLichenTable")]
+    partial class AddCommentFieldToLichenTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -19,6 +19,7 @@ namespace LichenOrganizer.Model
         public int? Elevation { get; set; }
         public DateTime AccessionNumber { get; set; }
         
+        public string? Comment { get; set; }
         public string? ImagePath { get; set; }
 
         //Navigation Properties

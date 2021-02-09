@@ -15,11 +15,12 @@
             <Setter Property="FontSize" Value="12"/>
         </Style>
         <Style x:Key="detail-panel-display" TargetType="StackPanel">
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="10 0"/>
         </Style>
         <Style x:Key="detail-nav-bar" TargetType="StackPanel">
             <Setter Property="Background" Value="DodgerBlue"/>
             <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="0"/>
         </Style>
         <Style x:Key="detail-nav-button" TargetType="Button">
             <Setter Property="Background" Value="#efefef"/>
@@ -27,13 +28,24 @@
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="BorderBrush" Value="#efefef"/>
         </Style>
+        <Style x:Key="lichen-image" TargetType="Image">
+            <Setter Property="Margin" Value="0 10 10 10"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="400"/>
+            <Setter Property="Width" Value="400"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0"
+                    Grid.ColumnSpan="2"
                     Style="{StaticResource detail-nav-bar}"
                     >
             <Button Content="New"
@@ -56,7 +68,9 @@
                     />
         </StackPanel>
 
+
         <StackPanel Grid.Row="1"
+                    Grid.Column="0"
                     Style="{StaticResource detail-panel-display}">
             <Label Content="Genus"/>
             <TextBox Text="{Binding Lichen.Genus, 
@@ -100,6 +114,24 @@
                                     UpdateSourceTrigger=PropertyChanged}" 
                                     />
 
+            <Label Content="Comments" 
+                   />
+            <TextBox Text="{Binding Lichen.Comment, 
+                                    TargetNullValue='', 
+                                    Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True"
+                     MinHeight="100"
+                     TextWrapping="NoWrap"
+                                    />
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="1"
+                    VerticalAlignment="Top">
+        <Image Source="{StaticResource WolfLichen}" 
+               Style="{StaticResource lichen-image}"/>
         </StackPanel>
     </Grid>
 </UserControl>

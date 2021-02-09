@@ -23,7 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\wolf-lichen.jpg" />
+    <Resource Include="Assets\wolf-lichen.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
