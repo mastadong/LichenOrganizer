@@ -16,9 +16,9 @@
     </UserControl.Resources>
     
     <Grid>
-        <ListView ItemsSource="{Binding Friends}"
+        <ListView ItemsSource="{Binding Lichens}"
                   Style="{StaticResource navigation-listbox}"
-                  SelectedItem="{Binding SelectedFriend, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedLichen, Mode=TwoWay}"
                   DisplayMemberPath="DisplayMember"/>
     </Grid>
 </UserControl>

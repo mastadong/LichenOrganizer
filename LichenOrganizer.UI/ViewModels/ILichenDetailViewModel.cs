@@ -2,7 +2,7 @@
 
 namespace LichenOrganizer.UI.ViewModels
 {
-    public interface IFriendDetailViewModel
+    public interface ILichenDetailViewModel
     {
         Task LoadAsync(int friendId);
     }

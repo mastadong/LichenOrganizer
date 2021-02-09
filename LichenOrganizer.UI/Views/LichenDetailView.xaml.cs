@@ -16,9 +16,9 @@ namespace LichenOrganizer.UI.Views
     /// <summary>
     /// Interaction logic for FriendDetailView.xaml
     /// </summary>
-    public partial class FriendDetailView : UserControl
+    public partial class LichenDetailView : UserControl
     {
-        public FriendDetailView()
+        public LichenDetailView()
         {
             InitializeComponent();
         }

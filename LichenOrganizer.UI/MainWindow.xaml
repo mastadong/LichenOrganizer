@@ -8,18 +8,23 @@
         xmlns:viewmodels="clr-namespace:LichenOrganizer.UI.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewmodels:MainViewModel}"
-        Title="LichenOrganizer" Height="450" Width="800" FontSize="20">
+        Title="LichenOrganizer"
+        Height="Auto"
+        Width="Auto"
+        FontSize="20">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition MinWidth="500"/>
         </Grid.ColumnDefinitions>
 
         <!-- NAVIGATION VIEW -->
-        <views:NavigationView DataContext="{Binding NavigationViewModel}" />
+        <views:NavigationView Grid.Column="0"
+                              DataContext="{Binding NavigationViewModel}"/>
 
         <!-- DETAIL PANEL -->
-        <views:FriendDetailView Grid.Column="1" DataContext="{Binding FriendDetailViewModel}"/>
+        <views:LichenDetailView Grid.Column="1" 
+                                DataContext="{Binding LichenDetailViewModel}"/>
 
     </Grid>
 

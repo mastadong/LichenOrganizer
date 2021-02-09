@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="LichenOrganizer.UI.Views.LichenDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LichenOrganizer.UI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Genus" Margin="10 10 10 0"/>
+        <TextBox Grid.Row="1" Text="{Binding Lichen.Genus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+
+        <Label Grid.Row="2" Content="Species" Margin="10 0"/>
+        <TextBox Grid.Row="3" Text="{Binding Lichen.Species, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+
+        <Label Grid.Row="4" 
+               Content="County" 
+               Margin="10 0"/>
+        <TextBox Grid.Row="5" Text="{Binding Lichen.County, 
+                                             TargetNullValue='', 
+                                             Mode=TwoWay, 
+                                             UpdateSourceTrigger=PropertyChanged}" 
+                                             Margin="10 0 10 10"/>
+
+        <Label Grid.Row="6" 
+               Content="State" 
+               Margin="10 0"/>
+        <TextBox Grid.Row="7" Text="{Binding Lichen.State, 
+                                             TargetNullValue='', 
+                                             Mode=TwoWay, 
+                                             UpdateSourceTrigger=PropertyChanged}" 
+                                             Margin="10 0 10 10"/>
+
+        <Label Grid.Row="8" 
+               Content="Elevation (meters)" 
+               Margin="10 0"/>
+        <TextBox Grid.Row="9" Text="{Binding Lichen.Elevation, 
+                                             TargetNullValue='', 
+                                             Mode=TwoWay, 
+                                             UpdateSourceTrigger=PropertyChanged}" 
+                                             Margin="10 0 10 10"/>
+
+        <Label Grid.Row="10" 
+               Content="Accession Number" 
+               Margin="10 0"/>
+        <TextBox Grid.Row="11" Text="{Binding Lichen.AccessionNumber, 
+                                             TargetNullValue='', 
+                                             Mode=TwoWay, 
+                                             UpdateSourceTrigger=PropertyChanged}" 
+                                             Margin="10 0 10 10"/>
+
+        <StackPanel Grid.Row="12" Orientation="Horizontal">
+            <Button Content="Save" Width="125" Margin="10"
+                    Command="{Binding SaveCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

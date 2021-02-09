@@ -13,40 +13,40 @@ namespace LichenOrganizer.UI.ViewModels
 {
     public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {
-        private IFriendLookupDataService _friendLookupService;
+        private ILichenLookupDataService _lichenLookupService;
         private IEventAggregator _eventAggregator;
-        public ObservableCollection<NavigationItemViewModel> Friends { get; }
+        public ObservableCollection<NavigationItemViewModel> Lichens { get; }
         
-        private NavigationItemViewModel _selectedFriend;
-        public NavigationItemViewModel SelectedFriend
+        private NavigationItemViewModel _selectedLichen;
+        public NavigationItemViewModel SelectedLichen
         {
-            get { return _selectedFriend; }
+            get { return _selectedLichen; }
             set { 
-                    _selectedFriend = value;
+                    _selectedLichen = value;
                     OnPropertyChanged();
                     //If a friend is selected, publish the event with the aggregator.
-                    if(_selectedFriend != null)
+                    if(_selectedLichen != null)
                     {
-                        _eventAggregator.GetEvent<OpenFriendDetailViewEvent>().Publish(_selectedFriend.Id);
+                        _eventAggregator.GetEvent<OpenLichenDetailViewEvent>().Publish(_selectedLichen.Id);
                     }
                 }
         }
 
-        public NavigationViewModel(IFriendLookupDataService friendLookupService, IEventAggregator eventAggregator)
+        public NavigationViewModel(ILichenLookupDataService lichenLookupService, IEventAggregator eventAggregator)
         {
-            _friendLookupService = friendLookupService;
+            _lichenLookupService = lichenLookupService;
             _eventAggregator = eventAggregator;
 
-            Friends = new ObservableCollection<NavigationItemViewModel>();
-            _eventAggregator.GetEvent<AfterFriendSavedEvent>().Subscribe(AfterFriendSaved);
+            Lichens = new ObservableCollection<NavigationItemViewModel>();
+            //_eventAggregator.GetEvent<AfterFriendSavedEvent>().Subscribe(AfterFriendSaved);
         }
 
         
         private void AfterFriendSaved(AfterFriendSavedEventArgs obj)
         {
-            //Retrieve the corresponding LookupItem from the Friends collection
-            var lookupItem = Friends.Single(l => l.Id == obj.Id);
-            //Update the properties.
+            //Retrieve the corresponding LookupItem from the Lichens collection
+            var lookupItem = Lichens.Single(l => l.Id == obj.Id);
+            //Updating the property should cause the UI to refresh.
             if(lookupItem != null)
             {
                 lookupItem.DisplayMember = obj.DisplayMember;
@@ -56,12 +56,11 @@ namespace LichenOrganizer.UI.ViewModels
 
         public async Task LoadAsync()
         {
-            var lookup = await _friendLookupService.GetFriendLookupAsync();
-            Friends.Clear();
+            var lookup = await _lichenLookupService.GetLichenLookupAsync();
+            Lichens.Clear();
             foreach(var item in lookup)
             {
-                //The friend lookup service returns a LookupItem, so we use its properties to create a new compatible collection object.
-                Friends.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
+                Lichens.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
             }
         }
 

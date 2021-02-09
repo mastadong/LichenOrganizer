@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LichenOrganizer.UI.Events
 {
-    public class OpenFriendDetailViewEvent : PubSubEvent<int>
+    public class OpenLichenDetailViewEvent : PubSubEvent<int>
     {
     }
 }

@@ -6,49 +6,65 @@ using System.Text;
 namespace LichenOrganizer.UI.Wrapper
 {
 
-    public class FriendWrapper : ModelWrapper<Friend>
+    public class LichenWrapper : ModelWrapper<Lichen>
     {
-        public FriendWrapper(Friend model) : base(model)
+        public LichenWrapper(Lichen model) : base(model)
         {
         }
 
         public int Id { get { return Model.Id; } } 
-
-        public string FirstName
+        public string Genus
         {
             get { return GetValue<string>(); }
             set
             { SetValue(value); }
         }
-
-        public string LastName
+        public string Species
         {
             get { return GetValue<string>(); }
             set { SetValue(value); }
         }
-
-        public string Email
+        public string County
         {
             get { return GetValue<string>(); }
             set { SetValue(value); }
         }
-
-
+        public string State
+        {
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
+        }
+        public int Elevation
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+        public string ImagePath
+        {
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
+        }
+        public DateTime AccessionNumber
+        {
+            get { return GetValue<DateTime>(); }
+            set { SetValue(value); }
+        }
+        
+        //VALIDATION RULES
         //We can set custom validation conditions here in the override method.  We can also extend the validation capabilities to incorporate the data annotations 
         //used in the Model.
         protected override IEnumerable<string> ValidateProperty(string propertyName)
         {
             switch (propertyName)
             {
-                case nameof(FirstName):
-                    if (string.Equals(FirstName, "Robot", StringComparison.OrdinalIgnoreCase))
+                case nameof(Genus):
+                    if (string.Equals(Genus, "Eggplant", StringComparison.OrdinalIgnoreCase))
                     {
-                        yield return "No robots are allowed to be my friend";
+                        yield return "No eggplants allowed.";
                     }
                     break;
             }
         }
-
 
 
     }

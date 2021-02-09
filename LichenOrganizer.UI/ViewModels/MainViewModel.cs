@@ -11,12 +11,12 @@ namespace LichenOrganizer.UI.ViewModels
     public class MainViewModel : ViewModelBase
     {
         public INavigationViewModel NavigationViewModel { get; }
-        public IFriendDetailViewModel FriendDetailViewModel { get; }     
-        public MainViewModel(INavigationViewModel navigationViewModel, IFriendDetailViewModel friendDetailViewModel)
+        public ILichenDetailViewModel LichenDetailViewModel { get; }     
+        public MainViewModel(INavigationViewModel navigationViewModel, ILichenDetailViewModel lichenDetailViewModel)
         {
             NavigationViewModel = navigationViewModel;
-            FriendDetailViewModel = friendDetailViewModel;
-        }
+            LichenDetailViewModel = lichenDetailViewModel;
+       }
 
       
 

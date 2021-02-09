@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LichenOrganizer.UI.Data
 {
-    public class LookupDataService : IFriendLookupDataService
+    public class LookupDataService : ILichenLookupDataService
     {
         private Func<LichenOrganizerDbContext> _contextCreator;
 
@@ -19,7 +19,7 @@ namespace LichenOrganizer.UI.Data
             _contextCreator = contextCreator;
         }
 
-        public async Task<IEnumerable<LookupItem>> GetFriendLookupAsync()
+        public async Task<IEnumerable<LookupItem>> GetLichenLookupAsync()
         {
             using (var context = _contextCreator())
             {

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LichenOrganizer.UI.Data
 {
-    public interface IFriendLookupDataService
+    public interface ILichenLookupDataService
     {
-        Task<IEnumerable<LookupItem>> GetFriendLookupAsync();
+        Task<IEnumerable<LookupItem>> GetLichenLookupAsync();
     }
 }
