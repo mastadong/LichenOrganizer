@@ -1,6 +1,7 @@
 ﻿using LichenOrganizer.Model;
 using LichenOrganizer.UI.Data;
 using LichenOrganizer.UI.Events;
+using LichenOrganizer.UI.Windows;
 using LichenOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace LichenOrganizer.UI.ViewModels
@@ -31,6 +33,7 @@ namespace LichenOrganizer.UI.ViewModels
 
         #region "Commands"
         public ICommand SaveCommand { get; }
+        public ICommand AddNewLichenCommand { get; }
         #endregion
 
         public LichenDetailViewModel(ILichenDataService dataService, IEventAggregator eventAggregator)
@@ -39,10 +42,20 @@ namespace LichenOrganizer.UI.ViewModels
             _eventAggregator = eventAggregator;
 
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
-            
+            AddNewLichenCommand = new DelegateCommand(OnAddNewLichenExecute, OnAddNewLichenCanExecute);            
+
             _eventAggregator.GetEvent<OpenLichenDetailViewEvent>().Subscribe(OnOpenLichenDetailView);
         }
+
         
+
+        private void OnAddNewLichenExecute()
+        {
+            AddNewLichenWindow addWindow = new AddNewLichenWindow();
+            addWindow.ShowInTaskbar = false;
+            addWindow.Owner = Application.Current.MainWindow;
+            addWindow.ShowDialog();
+        }
 
         private async void OnSaveExecute()
         {
@@ -60,6 +73,12 @@ namespace LichenOrganizer.UI.ViewModels
             //If change tracking is being implemented, insert checks here.
             return Lichen != null;
         }
+
+        private bool OnAddNewLichenCanExecute()
+        {
+            return true;
+        }
+
 
         private async void OnOpenLichenDetailView(int LichenId)
         {

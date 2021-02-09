@@ -1,18 +1,27 @@
-﻿<UserControl x:Class="LichenOrganizer.UI.Views.LichenDetailView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LichenOrganizer.UI.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        
+﻿<Window x:Class="LichenOrganizer.UI.Windows.AddNewLichenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LichenOrganizer.UI.Windows"
+        mc:Ignorable="d"
+        Title="AddNewLichenWindow" 
+        Height="500" 
+        Width="600"
+        WindowStartupLocation="CenterOwner"
+        >
+    <Window.Resources>
+
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="14"/>
         </Style>
-        <Style TargetType="Label">
+        <Style x:Key="entry-label" TargetType="Label">
             <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="DodgerBlue"/>
+        </Style>
+        <Style x:Key="optional-label" TargetType="Label">
+            <Setter Property="Foreground" Value="Red"/>
         </Style>
         <Style x:Key="detail-panel-display" TargetType="StackPanel">
             <Setter Property="Margin" Value="10 0"/>
@@ -34,55 +43,42 @@
             <Setter Property="MinHeight" Value="400"/>
             <Setter Property="MinWidth" Value="400"/>
         </Style>
-    </UserControl.Resources>
+        <Style x:Key="entry-button" TargetType="Button">
+            <Setter Property="Margin" Value="0 2 2 2"/>
+            <Setter Property="BorderBrush" Value="#efefef"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#323232"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
+
         <StackPanel Grid.Row="0"
-                    Grid.ColumnSpan="2"
-                    Style="{StaticResource detail-nav-bar}"
-                    >
-            <Button Content="New"
-                    Style="{StaticResource detail-nav-button}"
-                    Width="125"
-                    Margin="10"
-                    Command="{Binding AddNewLichenCommand}"
-                    />
-            <Button Content="Add Photos" 
-                    Style="{StaticResource detail-nav-button}"
-                    Width="125"
-                    Margin="10"
-                    Command="{Binding InsertNewCommand}"
-                    />
-            <Button Content="Update" 
-                    Style="{StaticResource detail-nav-button}"
-                    Width="125" 
-                    Margin="10"
-                    Command="{Binding SaveCommand}"
-                    />
-        </StackPanel>
-
-
-        <StackPanel Grid.Row="1"
                     Grid.Column="0"
                     Style="{StaticResource detail-panel-display}">
-            <Label Content="Genus"/>
+            <Label Content="Genus"
+                   Style="{StaticResource entry-label}"
+                   />
             <TextBox Text="{Binding Lichen.Genus, 
                                     Mode=TwoWay, 
                                     UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="Species"/>
+            <Label Content="Species"
+                   Style="{StaticResource entry-label}"
+                   />
             <TextBox Text="{Binding Lichen.Species, 
                                     Mode=TwoWay, 
                                     UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="County" 
+            <Label Content="County"
+                   Style="{StaticResource entry-label}"
                    />
             <TextBox Text="{Binding Lichen.County, 
                                     TargetNullValue='', 
@@ -91,6 +87,7 @@
                                     />
 
             <Label Content="State" 
+                   Style="{StaticResource entry-label}"
                    />
             <TextBox Text="{Binding Lichen.State, 
                                     TargetNullValue='', 
@@ -98,7 +95,8 @@
                                     UpdateSourceTrigger=PropertyChanged}" 
                                     />
 
-            <Label Content="Elevation (meters)" 
+            <Label Content="(Optional) Elevation (in meters)"
+                   Style="{StaticResource optional-label}"
                    />
             <TextBox Text="{Binding Lichen.Elevation, 
                                     TargetNullValue='', 
@@ -107,6 +105,7 @@
                                     />
 
             <Label Content="Accession Number" 
+                   Style="{StaticResource entry-label}"
                    />
             <TextBox Text="{Binding Lichen.AccessionNumber, 
                                     TargetNullValue='', 
@@ -114,7 +113,8 @@
                                     UpdateSourceTrigger=PropertyChanged}" 
                                     />
 
-            <Label Content="Comments" 
+            <Label Content="(Optional) Comments" 
+                   Style="{StaticResource optional-label}"
                    />
             <TextBox Text="{Binding Lichen.Comment, 
                                     TargetNullValue='', 
@@ -124,14 +124,36 @@
                      MinHeight="100"
                      TextWrapping="NoWrap"
                                     />
-            
+            <Border Background="DodgerBlue"
+                    Margin="0 10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="Submit" 
+                            Grid.Column="0"
+                            Margin="2"
+                            Style="{StaticResource entry-button}"
+                            Content="Save"
+                            Click="Submit_Click"
+                            />
+                    <Button x:Name="Cancel" 
+                            Grid.Column="1"
+                            Style="{StaticResource entry-button}"
+                            Content="Cancel"
+                            Click="Cancel_Click"
+                            />
+                </Grid>
+            </Border>                
+
         </StackPanel>
 
-        <StackPanel Grid.Row="1"
+        <!--<StackPanel Grid.Row="1"
                     Grid.Column="1"
                     VerticalAlignment="Top">
-        <Image Source="{StaticResource WolfLichen}" 
-               Style="{StaticResource lichen-image}"/>
-        </StackPanel>
+            --><!--<Image Source="{StaticResource WolfLichen}" 
+               Style="{StaticResource lichen-image}"/>--><!--
+        </StackPanel>-->
     </Grid>
-</UserControl>
+</Window>
