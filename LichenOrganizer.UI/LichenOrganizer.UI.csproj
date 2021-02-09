@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\wolf-lichen.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="6.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
@@ -16,6 +20,10 @@
   <ItemGroup>
     <ProjectReference Include="..\LichenOrganizer.DataAccess\LichenOrganizer.DataAccess.csproj" />
     <ProjectReference Include="..\LichenOrganizer.Model\LichenOrganizer.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\wolf-lichen.jpg" />
   </ItemGroup>
 
 </Project>
