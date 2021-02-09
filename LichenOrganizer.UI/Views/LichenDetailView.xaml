@@ -7,74 +7,99 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
+        
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
         </Style>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style x:Key="detail-panel-display" TargetType="StackPanel">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="detail-nav-bar" TargetType="StackPanel">
+            <Setter Property="Background" Value="DodgerBlue"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style x:Key="detail-nav-button" TargetType="Button">
+            <Setter Property="Background" Value="#efefef"/>
+            <Setter Property="Foreground" Value="DodgerBlue"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="BorderBrush" Value="#efefef"/>
         </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="Genus" Margin="10 10 10 0"/>
-        <TextBox Grid.Row="1" Text="{Binding Lichen.Genus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+        <StackPanel Grid.Row="0"
+                    Style="{StaticResource detail-nav-bar}"
+                    >
+            <Button Content="New"
+                    Style="{StaticResource detail-nav-button}"
+                    Width="125"
+                    Margin="10"
+                    Command="{Binding InsertNewCommand}"
+                    />
+            <Button Content="Add Photos" 
+                    Style="{StaticResource detail-nav-button}"
+                    Width="125"
+                    Margin="10"
+                    Command="{Binding InsertNewCommand}"
+                    />
+            <Button Content="Update" 
+                    Style="{StaticResource detail-nav-button}"
+                    Width="125" 
+                    Margin="10"
+                    Command="{Binding SaveCommand}"
+                    />
+        </StackPanel>
 
-        <Label Grid.Row="2" Content="Species" Margin="10 0"/>
-        <TextBox Grid.Row="3" Text="{Binding Lichen.Species, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+        <StackPanel Grid.Row="1"
+                    Style="{StaticResource detail-panel-display}">
+            <Label Content="Genus"/>
+            <TextBox Text="{Binding Lichen.Genus, 
+                                    Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="4" 
-               Content="County" 
-               Margin="10 0"/>
-        <TextBox Grid.Row="5" Text="{Binding Lichen.County, 
-                                             TargetNullValue='', 
-                                             Mode=TwoWay, 
-                                             UpdateSourceTrigger=PropertyChanged}" 
-                                             Margin="10 0 10 10"/>
+            <Label Content="Species"/>
+            <TextBox Text="{Binding Lichen.Species, 
+                                    Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="6" 
-               Content="State" 
-               Margin="10 0"/>
-        <TextBox Grid.Row="7" Text="{Binding Lichen.State, 
-                                             TargetNullValue='', 
-                                             Mode=TwoWay, 
-                                             UpdateSourceTrigger=PropertyChanged}" 
-                                             Margin="10 0 10 10"/>
+            <Label Content="County" 
+                   />
+            <TextBox Text="{Binding Lichen.County, 
+                                    TargetNullValue='', 
+                                    Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}" 
+                                    />
 
-        <Label Grid.Row="8" 
-               Content="Elevation (meters)" 
-               Margin="10 0"/>
-        <TextBox Grid.Row="9" Text="{Binding Lichen.Elevation, 
-                                             TargetNullValue='', 
-                                             Mode=TwoWay, 
-                                             UpdateSourceTrigger=PropertyChanged}" 
-                                             Margin="10 0 10 10"/>
+            <Label Content="State" 
+                   />
+            <TextBox Text="{Binding Lichen.State, 
+                                    TargetNullValue='', 
+                                    Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}" 
+                                    />
 
-        <Label Grid.Row="10" 
-               Content="Accession Number" 
-               Margin="10 0"/>
-        <TextBox Grid.Row="11" Text="{Binding Lichen.AccessionNumber, 
-                                             TargetNullValue='', 
-                                             Mode=TwoWay, 
-                                             UpdateSourceTrigger=PropertyChanged}" 
-                                             Margin="10 0 10 10"/>
+            <Label Content="Elevation (meters)" 
+                   />
+            <TextBox Text="{Binding Lichen.Elevation, 
+                                    TargetNullValue='', 
+                                    Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}" 
+                                    />
 
-        <StackPanel Grid.Row="12" Orientation="Horizontal">
-            <Button Content="Save" Width="125" Margin="10"
-                    Command="{Binding SaveCommand}"/>
+            <Label Content="Accession Number" 
+                   />
+            <TextBox Text="{Binding Lichen.AccessionNumber, 
+                                    TargetNullValue='', 
+                                    Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}" 
+                                    />
+
         </StackPanel>
     </Grid>
 </UserControl>
