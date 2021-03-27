@@ -15,8 +15,19 @@ namespace LichenOrganizer.UI.ViewModels
     {
         private ILichenLookupDataService _lichenLookupService;
         private IEventAggregator _eventAggregator;
-        public ObservableCollection<NavigationItemViewModel> Lichens { get; }
-        
+
+        private ObservableCollection<NavigationItemViewModel> _lichens;
+
+        public ObservableCollection<NavigationItemViewModel> Lichens
+        {
+            get { return _lichens; }
+            set 
+            { 
+                _lichens = value;
+                OnPropertyChanged();
+            }
+        }
+
         private NavigationItemViewModel _selectedLichen;
         public NavigationItemViewModel SelectedLichen
         {
@@ -57,11 +68,14 @@ namespace LichenOrganizer.UI.ViewModels
         public async Task LoadAsync()
         {
             var lookup = await _lichenLookupService.GetLichenLookupAsync();
-            Lichens.Clear();
+            var unsortedList = new List<NavigationItemViewModel>();
             foreach(var item in lookup)
             {
-                Lichens.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
+                unsortedList.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
+                //Lichens.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
             }
+            List<NavigationItemViewModel> sortedList = unsortedList.OrderByDescending(i => i.DisplayMember.ToUpper()).Reverse().ToList();
+            Lichens = new ObservableCollection<NavigationItemViewModel>(sortedList);
         }
 
     }
